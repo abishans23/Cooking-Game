@@ -17,7 +17,16 @@ class Game {
     }
 
     spawnFood(){
-        let newFood = new Food(this, "q", "lettuce", );
+        let randomNumber = Math.random();
+        let newFood = new Food(this, "q", "lettuce", "Lettuce");
+        this.sprites.push(newFood);
+        let foodSprite =  this.sprites[this.sprites.length-1]
+        foodSprite.height = 100;
+        foodSprite.width = 100;
+        foodSprite.x = Math.floor(randomNumber * (this.canvas.width-foodSprite.width));
+    
+        foodSprite.y = -40;
+        
     }
 
     render(){
@@ -46,6 +55,7 @@ function loadGame(){
     canvas.height = 650;
     canvas.style.left = "30%";
     canvas.style.top = "5%";
+    game.spawnFood();
 
     function animate(){
         game.render();

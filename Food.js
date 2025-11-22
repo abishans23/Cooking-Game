@@ -6,7 +6,7 @@ class Food {
         this.game = game;
         this.key = key;
         this.type = type;
-        this.image = image;
+        this.image = document.getElementById(image);
         this.x = 0;
         this.y = 0;
         this.width = 0;
