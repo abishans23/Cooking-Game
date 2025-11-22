@@ -7,10 +7,11 @@ class Food {
         this.key = key;
         this.type = type;
         this.image = document.getElementById(image);
-        this.x = 0;
-        this.y = 0;
-        this.width = 0;
-        this.height = 0;
+        this.width = 100;
+        this.height = 100;
+        this.y = -40;
+       
+        
     }
 
     update(dt){

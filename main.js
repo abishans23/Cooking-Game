@@ -22,11 +22,11 @@ class Game {
         let newFood = new Food(this, "q", "lettuce", "Lettuce");
         this.sprites.push(newFood);
         let foodSprite =  this.sprites[this.sprites.length-1]
-        foodSprite.height = 100;
-        foodSprite.width = 100;
+        foodSprite.height = newFood.height;
+        foodSprite.width = newFood.width;
         foodSprite.x = Math.floor(randomNumber * (this.canvas.width-foodSprite.width));
     
-        foodSprite.y = -40;
+        foodSprite.y = newFood.y;
         
     }
 
