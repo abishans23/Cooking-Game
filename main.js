@@ -4,13 +4,21 @@ class Game {
         this.context = canvas.getContext("2d");
         this.width = this.canvas.width;
         this.height = this.canvas.height;
+        this.sprites = [];
         let platex = 100;
         let platey = 550;
         this.plate = new Plate(this, platex, platey);
+        this.plate.width = 100;
+        this.plate.height = 100;
+        this.sprites.push(this.plate);
     }
 
     render(){
-        this.context.drawImage(this.plate.image, this.plate.x, this.plate.y, 100, 100);
+        for (let i = 0; i < this.sprites.length; i++){
+            //render sprite
+            let currentSprite = this.sprites[i];
+            this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
+        }
         //this.context.fillRect(100, 550, 50, 50);
     }
 
