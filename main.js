@@ -1,21 +1,18 @@
 class Game {
-    constructor(canvas){
+    constructor(canvas, context){
         this.canvas = canvas;
-        this.context = canvas.getContext("2d");
-    }
+        this.context = context;
+        this.width = this.canvas.width;
+        this.height = this.canvas.height;
 
-    printStuff() {
-        console.log("wwww");
     }
-
 }
 
 window.addEventListener('load', loadGame);
 
 function loadGame(){
     const canvas = document.getElementById("gameFrame");
-    const game = new Game(canvas);
-    game.printStuff();
+    const game = new Game(canvas, canvas.getContext("2d"));
 
 }
 
