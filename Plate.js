@@ -9,12 +9,13 @@ class Plate{
         this.height = 0;
 
         document.addEventListener("keydown", (e) => {
-            console.log(e);
+           // if(e == "")
+           console.log(e);
         });
 
     }
 
-    update(){
+    updateLeft(){
         this.x -= 1;
     }
 

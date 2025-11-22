@@ -14,6 +14,7 @@ class Game {
     }
 
     render(){
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         for (let i = 0; i < this.sprites.length; i++){
             //render sprite
             let currentSprite = this.sprites[i];
@@ -28,17 +29,22 @@ window.addEventListener('load', loadGame);
 
 function loadGame(){
     const canvas = document.getElementById("gameFrame");
-    const game = new Game(canvas);    
+    const game = new Game(canvas);
     canvas.width = 650;
     canvas.height = 650;
     canvas.style.left = "30%";
     canvas.style.top = "5%";
 
+    function animate(){
+        game.render();
+        requestAnimationFrame(animate);
+    }
 
+    animate();
 
-    game.render();
-
-
+    setTimeout(() => {
+        game.plate.x += 200;
+    }, 500);
 
 }
 
