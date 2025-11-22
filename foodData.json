@@ -1,0 +1,6 @@
+{
+  "keys" : ["q", "e"],
+ "foodTypes1" : ["bottom bun", "lettuce", "cheese", "tomatoes", "patty", "top bun"],
+ "foodTypes" : ["bottomBun", "lettuce"],
+ "imageTypes" : ["Lettuce", "BottomBun"]
+}
