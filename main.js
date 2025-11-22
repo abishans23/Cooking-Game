@@ -14,6 +14,7 @@ class Game {
         this.plate.width = 100;
         this.plate.height = 100;
         this.sprites.push(this.plate);
+        this.prevSpawn = new Date().getTime();
     }
 
     spawnFood(){
@@ -40,6 +41,10 @@ class Game {
     
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
             this.prevFrame = newFrame;
+        }
+        if (new Date().getTime() - this.prevSpawn > 2000){
+            this.spawnFood()
+            this.prevSpawn = new Date().getTime();
         }
         //this.context.fillRect(100, 550, 50, 50);
     }
