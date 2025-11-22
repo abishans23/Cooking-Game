@@ -11,3 +11,6 @@ function loadGame(){
     const canvas = document.getElementById("gameFrame")
     
 }
+
+
+//function to move the mouse
