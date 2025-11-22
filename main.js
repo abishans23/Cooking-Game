@@ -16,6 +16,10 @@ class Game {
         this.sprites.push(this.plate);
     }
 
+    spawnFood(){
+        let newFood = new Food(this, "q", "lettuce", );
+    }
+
     render(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         for (let i = 0; i < this.sprites.length; i++){
