@@ -21,8 +21,9 @@ class Game {
         let randomNumber = Math.random();
         let randomFood = Math.random();
         
-        let newFood = new Food(this, "q", "lettuce", "Lettuce");
+        let newFood = new Food(this, "q", "lettuce", "Lettuce", this.sprites.length);
         this.sprites.push(newFood);
+        this.food.push(newFood);
         let foodSprite =  this.sprites[this.sprites.length-1];
         foodSprite.height = newFood.height;
         foodSprite.width = newFood.width;
@@ -30,7 +31,6 @@ class Game {
         foodSprite.x = Math.floor(randomNumber * (this.canvas.width-foodSprite.width));
     
         foodSprite.y = newFood.y;
-        
     }
 
     render(){
@@ -74,6 +74,17 @@ function loadGame(){
     }
 
     requestAnimationFrame(animate);
+
+
+    addEventListener("keydown", (e)=>{
+        for (let i = 0; i < game.food.length; i++){
+            if (e.key == game.food[i].key){
+                game.sprites.pop(game.food[i].spriteIndex);
+                game.food.pop(i);
+                return;
+            }
+        }
+    })
 
 }
 

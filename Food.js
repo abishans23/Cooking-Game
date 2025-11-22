@@ -2,7 +2,7 @@ const keys = ["q", "e"];
 const foodTypes = ["bottom bun", "lettuce", "cheese", "tomatoes", "patty", "top bun"];
 
 class Food {
-    constructor(game, key, type, image){
+    constructor(game, key, type, image, spriteIndex){
         this.game = game;
         this.key = key;
         this.type = type;
@@ -10,12 +10,10 @@ class Food {
         this.width = 100;
         this.height = 100;
         this.y = -40;
-       
-        
+        this.spriteIndex = spriteIndex;
     }
 
     update(dt){
-        console.log(dt)
         this.y += (dt/100) * 10;
     }
 }
