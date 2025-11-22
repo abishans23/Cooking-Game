@@ -33,7 +33,7 @@ class Game {
 
         
         
-        let newFood = new Food(this, "q", foodName, foodImage);
+        let newFood = new Food(this, "q", foodName, foodImage, this.sprites.length);
         this.sprites.push(newFood);
         this.food.push(newFood);
         let foodSprite =  this.sprites[this.sprites.length-1];
@@ -105,7 +105,7 @@ function loadGame(){
             let centerFY = game.food[i].y + game.food[i].height/2;
 
             let dist = Math.sqrt((centerPX - centerFX) * (centerPX - centerFX) + (centerPY - centerFY) * (centerPY - centerFY))
-            console.log(dist + " " + i);
+
             if (dist < minDist){
                 minDist = dist;
                 closestFood = game.food[i];
@@ -114,9 +114,10 @@ function loadGame(){
         }
         
         if (closestFood != null && e.key == game.food[foodIndex].key){
-            game.sprites.pop(game.food[foodIndex].spriteIndex);
-            game.food.pop(foodIndex);
+            let r = game.sprites.splice(game.food[foodIndex].spriteIndex, 1);
+            game.food.splice(foodIndex, 1);
         }
+        
         db = false;
     })
 
