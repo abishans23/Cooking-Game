@@ -1,0 +1,9 @@
+#gameFrame {
+    background-color: black;
+    position: absolute;
+    top: 5%;
+    left: 25%;
+    height: 90%;
+    width: 50%;
+    
+}
