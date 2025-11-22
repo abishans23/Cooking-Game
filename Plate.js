@@ -7,17 +7,23 @@ class Plate{
         this.y = y;
         this.width = 0;
         this.height = 0;
+        this.speed = 25;
 
         document.addEventListener("keydown", (e) => {
-           // if(e == "")
-           console.log(e);
+           
+           if(e.key == "ArrowLeft" && this.x >= this.speed){
+            this.x -= this.speed;
+          }
+
+          if(e.key == "ArrowRight" && this.x <= (this.game.canvas.width - this.speed - this.width)){
+            this.x += this.speed;
+          }
+
         });
 
     }
 
-    updateLeft(){
-        this.x -= 1;
-    }
+    
 
         
 
