@@ -1,9 +1,10 @@
 import './images/plate.png';
+const image = require('./images/plate.png');
 class Plate{
-    constructor(main){
-        this.main = main;
-        //x, y
-        this.image = 
+    constructor(game){
+        this.game = game;
+        
+        this.image = image;
     }
 
 
