@@ -75,15 +75,37 @@ function loadGame(){
 
     requestAnimationFrame(animate);
 
+    let db = false;
 
     addEventListener("keydown", (e)=>{
+        if (db) {return;}
+
+        db = true;
+        let closestFood = null;
+        let minDist = Infinity;
+        let foodIndex = Infinity;
+
         for (let i = 0; i < game.food.length; i++){
-            if (e.key == game.food[i].key){
-                game.sprites.pop(game.food[i].spriteIndex);
-                game.food.pop(i);
-                return;
+            let centerPX = game.plate.x + game.plate.width/2;
+            let centerPY = game.plate.y + game.plate.height/2;
+
+            let centerFX = game.food[i].x + game.food[i].width/2;
+            let centerFY = game.food[i].y + game.food[i].height/2;
+
+            let dist = Math.sqrt((centerPX - centerFX) * (centerPX - centerFX) + (centerPY - centerFY) * (centerPY - centerFY))
+            console.log(dist + " " + i);
+            if (dist < minDist){
+                minDist = dist;
+                closestFood = game.food[i];
+                foodIndex = i;
             }
         }
+        
+        if (closestFood != null && e.key == game.food[foodIndex].key){
+            game.sprites.pop(game.food[foodIndex].spriteIndex);
+            game.food.pop(foodIndex);
+        }
+        db = false;
     })
 
 }
