@@ -8,8 +8,8 @@ class Game {
     }
 
     render(){
-        this.context.fillStyle = 'red';
-        this.context.fillRect(100, 550, 50, 50);
+        this.context.drawImage(this.plate.image, 100, 550, 100, 100);
+        //this.context.fillRect(100, 550, 50, 50);
     }
 
 
