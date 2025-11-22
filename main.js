@@ -11,14 +11,20 @@ class Game {
         this.plate.width = 100;
         this.plate.height = 100;
         this.sprites.push(this.plate);
+        this.prevFrame = new Date().getTime();
     }
 
     render(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         for (let i = 0; i < this.sprites.length; i++){
             //render sprite
+            let newFrame = new Date().getTime();
             let currentSprite = this.sprites[i];
+
+            currentSprite.update(newFrame - this.prevFrame);
+    
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
+            this.prevFrame = newFrame;
         }
         //this.context.fillRect(100, 550, 50, 50);
     }
@@ -40,11 +46,7 @@ function loadGame(){
         requestAnimationFrame(animate);
     }
 
-    animate();
-
-    setTimeout(() => {
-        game.plate.x += 200;
-    }, 500);
+    requestAnimationFrame(animate);
 
 }
 

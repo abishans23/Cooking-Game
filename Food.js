@@ -1,5 +1,5 @@
 const keys = ["q", "e"];
-const foodTypes = [];
+const foodTypes = ["bottom bun", "lettuce", "cheese", "tomatoes", "patty", "top bun"];
 
 class Food {
     constructor(game, key, type, sprite){
