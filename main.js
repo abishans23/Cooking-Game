@@ -19,17 +19,14 @@ class Game {
 
     spawnFood(){
         let randomNumber = Math.random();
+        let randomFood = Math.random();
+        
         let newFood = new Food(this, "q", "lettuce", "Lettuce");
         this.sprites.push(newFood);
-<<<<<<< HEAD
-        let foodSprite =  this.sprites[this.sprites.length-1]
+        let foodSprite =  this.sprites[this.sprites.length-1];
         foodSprite.height = newFood.height;
         foodSprite.width = newFood.width;
-=======
-        let foodSprite = this.sprites[this.sprites.length-1]
-        foodSprite.height = 100;
-        foodSprite.width = 100;
->>>>>>> c1b7be12bc2009a1551e9bbee38ba9afb78789e1
+
         foodSprite.x = Math.floor(randomNumber * (this.canvas.width-foodSprite.width));
     
         foodSprite.y = newFood.y;
