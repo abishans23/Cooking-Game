@@ -12,7 +12,6 @@ class Game {
         //this.context.fillRect(100, 550, 50, 50);
     }
 
-
 }
 
 window.addEventListener('load', loadGame);
