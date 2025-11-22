@@ -19,10 +19,12 @@ window.addEventListener('load', loadGame);
 
 function loadGame(){
     const canvas = document.getElementById("gameFrame");
-    const game = new Game(canvas);
-    
+    const game = new Game(canvas);    
     canvas.width = 650;
     canvas.height = 650;
+    canvas.style.left = "30%";
+    canvas.style.top = "5%";
+
 
     game.render();
 
