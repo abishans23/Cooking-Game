@@ -17,11 +17,23 @@ class Game {
         this.prevSpawn = new Date().getTime();
     }
 
-    spawnFood(){
+    async spawnFood(){
+        const res = await fetch("./foodData.json");
+        const data = await res.json();
+        const foodTypes = data["foodTypes"];
+        const imageTypes = data["imageTypes"];
+
         let randomNumber = Math.random();
-        let randomFood = Math.random();
+        let randomFood = Math.floor(Math.random() * foodTypes.length);
+        if(randomFood == 7){
+            randomFood = 6;
+        }
+        let foodName = foodTypes[randomFood];
+        let foodImage = imageTypes[randomFood];
+
         
-        let newFood = new Food(this, "q", "lettuce", "Lettuce");
+        
+        let newFood = new Food(this, "q", foodName, foodImage);
         this.sprites.push(newFood);
         let foodSprite =  this.sprites[this.sprites.length-1];
         foodSprite.height = newFood.height;
