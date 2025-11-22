@@ -5,13 +5,15 @@ class Game {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.sprites = [];
+        this.food = [];
+        this.prevFrame = new Date().getTime();
+
         let platex = 100;
         let platey = 550;
         this.plate = new Plate(this, platex, platey);
         this.plate.width = 100;
         this.plate.height = 100;
         this.sprites.push(this.plate);
-        this.prevFrame = new Date().getTime();
     }
 
     render(){
@@ -20,7 +22,7 @@ class Game {
             //render sprite
             let newFrame = new Date().getTime();
             let currentSprite = this.sprites[i];
-
+            
             currentSprite.update(newFrame - this.prevFrame);
     
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);

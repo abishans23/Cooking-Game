@@ -37,8 +37,8 @@ class Plate{
     }
     
     update(dt){
-      
       this.x += (dt/100) * this.vel;
+      
       if (this.x < 0){
         this.x = 0;
       }
