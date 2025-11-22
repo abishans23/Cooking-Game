@@ -21,7 +21,7 @@ class Game {
         let randomNumber = Math.random();
         let newFood = new Food(this, "q", "lettuce", "Lettuce");
         this.sprites.push(newFood);
-        let foodSprite =  this.sprites[this.sprites.length-1]
+        let foodSprite = this.sprites[this.sprites.length-1]
         foodSprite.height = 100;
         foodSprite.width = 100;
         foodSprite.x = Math.floor(randomNumber * (this.canvas.width-foodSprite.width));
@@ -32,20 +32,23 @@ class Game {
 
     render(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        let newFrame = new Date().getTime();
         for (let i = 0; i < this.sprites.length; i++){
             //render sprite
-            let newFrame = new Date().getTime();
             let currentSprite = this.sprites[i];
             
             currentSprite.update(newFrame - this.prevFrame);
     
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
-            this.prevFrame = newFrame;
         }
-        if (new Date().getTime() - this.prevSpawn > 2000){
+
+        if (newFrame - this.prevSpawn > 2000){
             this.spawnFood()
             this.prevSpawn = new Date().getTime();
         }
+
+        this.prevFrame = newFrame;
+
         //this.context.fillRect(100, 550, 50, 50);
     }
 
