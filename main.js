@@ -27,6 +27,7 @@ function loadGame(){
     canvas.style.top = "5%";
 
 
+
     game.render();
 
 

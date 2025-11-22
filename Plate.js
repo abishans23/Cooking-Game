@@ -6,11 +6,18 @@ class Plate{
         this.x = x;
         this.y = y;
 
+        document.addEventListener("keydown", (e) => {
+            console.log(e);
+        });
+
     }
 
-    left(dx){
-        this.x += dx;
+    update(){
+        this.x -= 1;
     }
+
+        
+
 
    
 
