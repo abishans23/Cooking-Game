@@ -1,4 +1,3 @@
-
 class Plate{
     constructor(game, x, y){
         this.game = game;
@@ -7,38 +6,69 @@ class Plate{
         this.y = y;
         this.width = 0;
         this.height = 0;
-        this.speed = 250;
+        this.maxSpeed = 500;
         this.vel = 0;
+        this.changedDir = 0;
+        this.direction = 0;
 
         document.addEventListener("keydown", (e) => {
-           
+
            if(e.key == "ArrowLeft"){
-            this.vel = -this.speed;
+            this.changedDir = new Date().getTime();
+            this.direction = -1;
+            // this.vel = -this.maxSpeed;
           }
 
           if(e.key == "ArrowRight"){
-            this.vel = this.speed;
+            this.changedDir = new Date().getTime();
+            this.direction = 1;
+            // this.vel = this.maxSpeed;
           }
 
         });
 
         document.addEventListener("keyup", (e) => {
-           
+
            if(e.key == "ArrowLeft"){
-            this.vel = 0;
+            this.changedDir = new Date().getTime();
+            this.direction = 0;
+
           }
 
           if(e.key == "ArrowRight"){
-            this.vel = 0;
+            this.changedDir = new Date().getTime();
+            this.direction = 0;
           }
 
         });
 
     }
-    
+
     update(dt){
+      let t = (new Date().getTime() - this.changedDir);
+      this.vel += this.direction * (t / 10);
+
+      if (this.direction == 0){
+        let prevSign = Math.sign(this.vel);
+        this.vel -= (t / 15) * prevSign;
+        if (Math.sign(this.vel) != prevSign){
+          this.vel = 0;
+        }
+      }
+
+      if (this.vel > this.maxSpeed){
+        this.vel = this.maxSpeed;
+      } else if (this.vel < -this.maxSpeed){
+        this.vel = -this.maxSpeed;
+      }
+
+      // if (Math.abs(this.vel) < 5){
+      //   this.direction = 0;
+      //   this.vel = 0;
+      // }
+
       this.x += (dt/1000) * this.vel;
-      
+
       if (this.x < 0){
         this.x = 0;
       }
