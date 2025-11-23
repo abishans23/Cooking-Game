@@ -36,7 +36,7 @@ class Game {
 
         plateSprite.x = Math.floor(randomNumber * (this.canvas.width-plateSprite.width));
     
-        plateSprite.y = plate.y;
+        plateSprite.y = plate.y-(plateSprite.height/2);
 
     }
 
