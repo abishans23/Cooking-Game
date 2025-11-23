@@ -1,8 +1,8 @@
 class EvilPlate{
-    constructor(game){
+    constructor(game, width){
         this.game = game;
-        this.width = 70;
-        this.height = 70;
+        this.width = width;
+        this.height = width;
         this.image = document.getElementById("plate");
         this.spawnTime = new Date().getTime();
         this.y = 0;

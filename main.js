@@ -21,12 +21,17 @@ class Game {
     }
 
     spawnEvilPlate(){
-        let plate = new EvilPlate(this);
-        this.sprites.push(plate);
-        let plateSprite =  this.sprites[this.sprites.length-1];
-        plateSprite.height = this.plate.height;
-        plateSprite.width = this.plate.width;
         let randomNumber = Math.random();
+        if(randomNumber > 0.7){
+            randomNumber/=2;
+        }
+
+        let plate = new EvilPlate(this, 80*randomNumber+80);
+        this.sprites.push(plate);
+
+        let plateSprite =  this.sprites[this.sprites.length-1];
+        plateSprite.height = plate.height;
+        plateSprite.width = plate.width;
 
         plateSprite.x = Math.floor(randomNumber * (this.canvas.width-plateSprite.width));
     
