@@ -62,6 +62,17 @@ class Game {
             this.prevSpawn = new Date().getTime();
         }
 
+        for (let i = 0; i < this.food.length; i++){
+            if (this.food[i].y > this.canvas.height - this.food[i].height){
+                this.sprites.splice(this.food[i].spriteIndex, 1);
+                this.food.splice(i, 1);
+                for (let j = i; j < this.food.length; j++){
+                    this.food[j].spriteIndex -= 1;
+                }
+                i--;
+            }
+        }
+
         this.prevFrame = newFrame;
 
         //this.context.fillRect(100, 550, 50, 50);
@@ -111,13 +122,21 @@ function loadGame(){
                 closestFood = game.food[i];
                 foodIndex = i;
             }
+            console.log(dist);
+
         }
+
+        console.log(closestFood);
         
         if (closestFood != null && e.key == game.food[foodIndex].key){
-            let r = game.sprites.splice(game.food[foodIndex].spriteIndex, 1);
+            game.sprites.splice(game.food[foodIndex].spriteIndex, 1);
             game.food.splice(foodIndex, 1);
+
+            for (let i = foodIndex; i < game.food.length; i++){
+                game.food[i].spriteIndex -= 1;
+            }
         }
-        
+
         db = false;
     })
 
