@@ -2,3 +2,8 @@
     background-color: lightskyblue;
     position: absolute;    
 }
+
+#instructionsFrame{
+    background-color: orange;
+    position:absolute
+}
