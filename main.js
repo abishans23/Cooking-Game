@@ -79,6 +79,16 @@ class Game {
 
         //this.context.fillRect(100, 550, 50, 50);
     }
+    
+    chooseRecipe(){
+        const recipies = data["recipies"];
+        const instructions = document.getElementById("instructions");
+        const randomRecipe = recipies[0];
+
+        for (let i = 0; i < randomRecipe.length; i++){
+            
+        }
+    }
 
 
 
