@@ -10,6 +10,7 @@ class Game {
         this.food = [];
         this.prevFrame = new Date().getTime();
         this.recipie = this.chooseRecipe();
+        this.caughtFood = 0;
 
         let platex = 100;
         let platey = 550;
@@ -87,16 +88,18 @@ class Game {
         const instructions = document.getElementById("instructions");
         const randomRecipe = recipies[0];
         console.log(randomRecipe.length);
+        this.recipie = [];
 
-        for (let i = 0; i < randomRecipe.length; i++){
+        for (let i = randomRecipe.length-1; i > -1; i--){
             let img = document.createElement("img");
             img.src = "./images/" + foodTypes[i] + ".png";
             img.width = "100";
             img.id = "TopBun";
             img.style.filter = "Brightness(0)"
-            
-            instructions.appendChild(img);
+            img.type = foodTypes[i];
 
+            instructions.appendChild(img);
+            this.recipie.push(img);
         }
     }
 
@@ -156,6 +159,11 @@ function loadGame(){
 
             for (let i = foodIndex; i < game.food.length; i++){
                 game.food[i].spriteIndex -= 1;
+            }
+
+            if (game.recipie[game.recipie.length - 1 - game.caughtFood].type == closestFood.image.id){
+                game.recipie[game.recipie.length - 1 - game.caughtFood].style.filter = "Brightness(1)"
+                game.caughtFood++;
             }
         }
 
