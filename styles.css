@@ -3,7 +3,18 @@
     position: absolute;    
 }
 
-#instructionsFrame{
-    background-color: orange;
-    position:absolute
+.instructions{
+    background-color: blueviolet;
+    margin-left: 65%;
+    width: 25%;
+    height: 58%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+#TopBun{
+    align-self: center;
+}
+#BottomBun{
+    align-self: center;
 }

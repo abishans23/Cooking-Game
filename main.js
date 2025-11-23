@@ -1,15 +1,11 @@
 class Game {
-    constructor(canvas, canvas2){
+    constructor(canvas, ){
         this.canvas = canvas;
-        this.canvas2 = canvas2;
-        this.context2 = canvas2.getContext("2d");
         this.context = canvas.getContext("2d");
 
         this.width = this.canvas.width;
         this.height = this.canvas.height;
 
-        this.width2 = this.canvas2.width;
-        this.height2 = this.canvas2.height;
         this.sprites = [];
         this.food = [];
         this.prevFrame = new Date().getTime();
@@ -84,23 +80,20 @@ class Game {
         //this.context.fillRect(100, 550, 50, 50);
     }
 
+
+
 }
 
 window.addEventListener('load', loadGame);
 
 function loadGame(){
     const canvas = document.getElementById("gameFrame");
-    const canvas2 = document.getElementById("instructionsFrame");
-    const game = new Game(canvas, canvas2);
+    const game = new Game(canvas);
     canvas.width = 650;
     canvas.height = 650;
     canvas.style.left = "20%";
     canvas.style.top = "5%";
 
-    canvas2.width = 400;
-    canvas2.height = 650;
-    canvas2.style.right = "7%";
-    canvas2.style.top = "5%";
 
     game.spawnFood();
 
