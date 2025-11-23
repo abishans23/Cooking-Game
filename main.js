@@ -107,9 +107,9 @@ class Game {
         const res = await fetch("./foodData.json");
         const data = await res.json();
         const foodTypes = data["foodTypes"];
-        const recipies = data["recipies"];
+        const recipes = data["recipes"];
         const instructions = document.getElementById("instructions");
-        const randomRecipe = recipies[0];
+        const randomRecipe = recipes[0];
 
         for (let i = 0; i < this.recipie.length; i++){
             instructions.removeChild(this.recipie[i]);
@@ -140,7 +140,7 @@ window.addEventListener('load', loadGame);
 function loadGame(){
     const canvas = document.getElementById("gameFrame");
     const game = new Game(canvas);
-    
+
     function animate(){
         game.render();
         requestAnimationFrame(animate);
