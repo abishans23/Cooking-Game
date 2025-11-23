@@ -34,7 +34,7 @@ class Key {
         this.y = 0;
     }
 
-    update(){
-
+    update(dt){
+        return;
     }
 }

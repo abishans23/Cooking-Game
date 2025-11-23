@@ -42,8 +42,8 @@ class Game {
         const res = await fetch("./foodData.json");
         const data = await res.json();
         const foodTypes = data["foodTypes"];
-        const key = Math.floor(Math.random() * 5 - 0.0001);
-
+        const key = ["q", "w", "e", "r"][Math.floor(Math.random() * 4)];
+        console.log(key);
         let randomNumber = Math.random();
         let randomFood = Math.floor(Math.random() * foodTypes.length);
         if(randomFood == 7){
@@ -51,7 +51,7 @@ class Game {
         }
         let foodName = foodTypes[randomFood];
 
-        let newFood = new Food(this, "q", foodName, this.sprites.length);
+        let newFood = new Food(this, key, foodName, this.sprites.length);
         this.sprites.push(newFood);
         this.sprites.push(newFood.keyHolder);
         this.food.push(newFood);
@@ -70,7 +70,6 @@ class Game {
             let currentSprite = this.sprites[i];
             
             currentSprite.update(newFrame - this.prevFrame);
-            console.log(currentSprite);
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
         }
 
