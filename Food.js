@@ -13,9 +13,11 @@ class Food {
         this.height = 100;
         this.y = -40;
         this.spriteIndex = spriteIndex;
+        this.spawnTime = new Date().getTime();
     }
 
     update(dt){
-        this.y += (dt/1000) * 100;
+        let t = (new Date().getTime() - this.spawnTime);
+        this.y += (dt/1000) * 100 + t * (dt/1000) * (9.8/100); 
     }
 }

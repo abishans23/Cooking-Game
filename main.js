@@ -137,7 +137,7 @@ function loadGame(){
         //can't let player spam keys
         setTimeout(e =>{
             cooldown = false;
-        }, 200)
+        }, 100)
     })
 
 }
