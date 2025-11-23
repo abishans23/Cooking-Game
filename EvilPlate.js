@@ -6,6 +6,7 @@ class EvilPlate{
         this.image = document.getElementById("evilPlate");
         this.spawnTime = new Date().getTime();
         this.y = 0;
+        this.x = 0;
     }
 
     update(dt){
