@@ -1,0 +1,5 @@
+class EvilPlate{
+    constructor(game){
+        
+    }
+}
