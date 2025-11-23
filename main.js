@@ -31,8 +31,6 @@ class Game {
         let foodName = foodTypes[randomFood];
         let foodImage = imageTypes[randomFood];
 
-        
-        
         let newFood = new Food(this, "q", foodName, foodImage, this.sprites.length);
         this.sprites.push(newFood);
         this.food.push(newFood);
@@ -62,6 +60,7 @@ class Game {
             this.prevSpawn = new Date().getTime();
         }
 
+        //delete food if it hits bottom
         for (let i = 0; i < this.food.length; i++){
             if (this.food[i].y > this.canvas.height - this.food[i].height){
                 this.sprites.splice(this.food[i].spriteIndex, 1);
