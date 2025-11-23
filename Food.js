@@ -4,10 +4,9 @@ const foodTypes = ["bottomBun", "lettuce"];
 const imageTypes = ["Lettuce", "bottomBun"];
 
 class Food {
-    constructor(game, key, type, image, spriteIndex){
+    constructor(game, key, image, spriteIndex){
         this.game = game;
         this.key = key;
-        this.type = type;
         this.image = document.getElementById(image);
         this.width = 100;
         this.height = 100;
