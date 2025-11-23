@@ -19,6 +19,11 @@ class Game {
         this.prevSpawn = new Date().getTime();
     }
 
+    spawnEvilPlate(){
+        plate = new EvilPlate();
+        this.sprites.push(plate);
+    }
+
     async spawnFood(){
         const res = await fetch("./foodData.json");
         const data = await res.json();
