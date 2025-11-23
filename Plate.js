@@ -7,7 +7,7 @@ class Plate{
         this.y = y;
         this.width = 0;
         this.height = 0;
-        this.speed = 25;
+        this.speed = 250;
         this.vel = 0;
 
         document.addEventListener("keydown", (e) => {
@@ -37,7 +37,7 @@ class Plate{
     }
     
     update(dt){
-      this.x += (dt/100) * this.vel;
+      this.x += (dt/1000) * this.vel;
       
       if (this.x < 0){
         this.x = 0;

@@ -46,6 +46,7 @@ class Game {
     render(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         let newFrame = new Date().getTime();
+
         for (let i = 0; i < this.sprites.length; i++){
             //render sprite
             let currentSprite = this.sprites[i];
@@ -62,7 +63,7 @@ class Game {
 
         //delete food if it hits bottom
         for (let i = 0; i < this.food.length; i++){
-            if (this.food[i].y > this.canvas.height - this.food[i].height){
+            if (this.food[i].y > this.canvas.height){
                 this.sprites.splice(this.food[i].spriteIndex, 1);
                 this.food.splice(i, 1);
                 for (let j = i; j < this.food.length; j++){
@@ -97,12 +98,12 @@ function loadGame(){
 
     requestAnimationFrame(animate);
 
-    let db = false;
+    let cooldown = false;
 
     addEventListener("keydown", (e)=>{
-        if (db) {return;}
+        if (cooldown) {return;}
 
-        db = true;
+        cooldown = true;
         let closestFood = null;
         let minDist = Infinity;
         let foodIndex = Infinity;
@@ -121,13 +122,10 @@ function loadGame(){
                 closestFood = game.food[i];
                 foodIndex = i;
             }
-            console.log(dist);
 
         }
-
-        console.log(closestFood);
         
-        if (closestFood != null && e.key == game.food[foodIndex].key){
+        if (closestFood != null && e.key == game.food[foodIndex].key && minDist < 75){
             game.sprites.splice(game.food[foodIndex].spriteIndex, 1);
             game.food.splice(foodIndex, 1);
 
@@ -136,7 +134,10 @@ function loadGame(){
             }
         }
 
-        db = false;
+        //can't let player spam keys
+        setTimeout(e =>{
+            cooldown = false;
+        }, 200)
     })
 
 }

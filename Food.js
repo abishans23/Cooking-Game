@@ -16,6 +16,6 @@ class Food {
     }
 
     update(dt){
-        this.y += (dt/100) * 10;
+        this.y += (dt/1000) * 100;
     }
 }
