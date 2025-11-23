@@ -6,7 +6,7 @@ class Plate{
         this.y = y;
         this.width = 0;
         this.height = 0;
-        this.maxSpeed = 500;
+        this.maxSpeed = 400;
         this.vel = 0;
         this.changedDir = 0;
         this.direction = 0;
@@ -16,13 +16,11 @@ class Plate{
            if(e.key == "ArrowLeft"){
             this.changedDir = new Date().getTime();
             this.direction = -1;
-            // this.vel = -this.maxSpeed;
           }
 
           if(e.key == "ArrowRight"){
             this.changedDir = new Date().getTime();
             this.direction = 1;
-            // this.vel = this.maxSpeed;
           }
 
         });
@@ -61,11 +59,6 @@ class Plate{
       } else if (this.vel < -this.maxSpeed){
         this.vel = -this.maxSpeed;
       }
-
-      // if (Math.abs(this.vel) < 5){
-      //   this.direction = 0;
-      //   this.vel = 0;
-      // }
 
       this.x += (dt/1000) * this.vel;
 
