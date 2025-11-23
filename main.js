@@ -23,11 +23,11 @@ class Game {
 
     spawnEvilPlate(){
         let randomNumber = Math.random();
-        if(randomNumber > 0.7){
+        if(randomNumber > 0.8){
             randomNumber/=2;
         }
 
-        let plate = new EvilPlate(this, 80*randomNumber+80);
+        let plate = new EvilPlate(this, 180*randomNumber+80);
         this.sprites.push(plate);
 
         let plateSprite =  this.sprites[this.sprites.length-1];
