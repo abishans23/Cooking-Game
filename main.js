@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas, ){
+    constructor(canvas){
         this.canvas = canvas;
         this.context = canvas.getContext("2d");
 
@@ -80,15 +80,6 @@ class Game {
         //this.context.fillRect(100, 550, 50, 50);
     }
     
-    chooseRecipe(){
-        const recipies = data["recipies"];
-        const instructions = document.getElementById("instructions");
-        const randomRecipe = recipies[0];
-
-        for (let i = 0; i < randomRecipe.length; i++){
-            
-        }
-    }
 
 
 
@@ -103,7 +94,6 @@ function loadGame(){
     canvas.height = 650;
     canvas.style.left = "20%";
     canvas.style.top = "5%";
-
 
     game.spawnFood();
 
