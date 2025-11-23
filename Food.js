@@ -10,6 +10,7 @@ class Food {
         this.image = document.getElementById(image);
         this.width = 100;
         this.height = 100;
+        this.x = 0;
         this.y = -40;
         this.spriteIndex = spriteIndex;
         this.spawnTime = new Date().getTime();
@@ -18,5 +19,14 @@ class Food {
     update(dt){
         let t = (new Date().getTime() - this.spawnTime);
         this.y += (dt/1000) * 100 + t * (dt/1000) * (9.8/100); 
+    }
+}
+
+class Key {
+    constructor(key){
+        this.image = image;
+        this.key = key;
+        this.x = 0;
+        this.y = 0;
     }
 }
