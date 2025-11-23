@@ -31,11 +31,9 @@ class Game {
         let plate = new EvilPlate(this, 180*randomNumber+80);
         this.sprites.push(plate);
 
-
         plate.x = Math.floor(randomNumber * (this.canvas.width-plate.width));
     
         plate.y = plate.y-(plate.height/2);
-
     }
 
     async spawnFood(){
@@ -43,7 +41,7 @@ class Game {
         const data = await res.json();
         const foodTypes = data["foodTypes"];
         const key = ["q", "w", "e", "r"][Math.floor(Math.random() * 4)];
-        console.log(key);
+
         let randomNumber = Math.random();
         let randomFood = Math.floor(Math.random() * foodTypes.length);
         if(randomFood == 7){
