@@ -4,8 +4,8 @@ class Plate{
         this.image = document.getElementById("plate");
         this.x = x;
         this.y = y;
-        this.width = 0;
-        this.height = 0;
+        // this.width = 0;
+        // this.height = 0;
         this.maxSpeed = 400;
         this.vel = 0;
         this.changedDir = 0;

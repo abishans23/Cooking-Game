@@ -1,8 +1,7 @@
 {
   "keys" : ["q", "e"],
- "foodTypes" : ["bottom bun", "lettuce", "cheese", "tomatoes", "patty", "top bun"],
- "imageTypes" : ["BottomBun", "Lettuce", "Cheese", "Tomato", "Patty", "TopBun"],
+ "foodTypes" : ["bottomBun", "lettuce", "cheese", "tomato", "patty", "topBun"],
  "recipies": {
-    "0" : ["bottom bun", "lettuce", "cheese", "tomatoes", "patty", "top bun"]
+    "0" :  ["bottomBun", "lettuce", "cheese", "tomato", "patty", "topBun"]
  }
 }
