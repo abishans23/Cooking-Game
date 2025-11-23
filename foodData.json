@@ -1,7 +1,10 @@
 {
   "keys" : ["q", "e"],
- "foodTypes" : ["bottomBun", "lettuce", "cheese", "tomato", "patty", "topBun"],
+ "foodTypes" : ["bottomBun", "lettuce", "cheese", "tomato", "patty", "goblin", "topBun"],
  "recipes": {
-    "0" :  ["bottomBun", "lettuce", "cheese", "tomato", "patty", "topBun"]
- }
+    "0" :  ["bottomBun", "lettuce", "cheese", "tomato", "patty", "goblin", "topBun"]
+ },
+
+ "plateState":["plate0", "plate1", "plate2", "plate3"]
+ 
 }

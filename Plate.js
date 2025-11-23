@@ -1,7 +1,7 @@
 class Plate{
     constructor(game, x, y){
         this.game = game;
-        this.image = document.getElementById("plate");
+        this.image = document.getElementById("plate0");
         this.x = x;
         this.y = y;
         this.width = 0;
