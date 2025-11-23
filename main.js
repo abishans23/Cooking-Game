@@ -9,6 +9,7 @@ class Game {
         this.sprites = [];
         this.food = [];
         this.prevFrame = new Date().getTime();
+        this.recipie = this.chooseRecipe();
 
         let platex = 100;
         let platey = 550;
@@ -83,6 +84,26 @@ class Game {
         //this.context.fillRect(100, 550, 50, 50);
     }
     
+    async chooseRecipe(){
+        const res = await fetch("./foodData.json");
+        const data = await res.json();
+        const foodTypes = data["foodTypes"];
+        const recipies = data["recipies"];
+        const instructions = document.getElementById("instructions");
+        const randomRecipe = recipies[0];
+        console.log(randomRecipe.length);
+
+        for (let i = 0; i < randomRecipe.length; i++){
+            let img = document.createElement("img");
+            img.src = "./images/" + foodTypes[i] + ".png";
+            img.width = "100";
+            img.id = "TopBun";
+            img.style.filter = "Brightness(0)"
+            
+            instructions.appendChild(img);
+
+        }
+    }
 
 
 
