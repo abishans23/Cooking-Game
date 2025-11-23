@@ -30,13 +30,10 @@ class Game {
         let plate = new EvilPlate(this, 180*randomNumber+80);
         this.sprites.push(plate);
 
-        let plateSprite =  this.sprites[this.sprites.length-1];
-        plateSprite.height = plate.height;
-        plateSprite.width = plate.width;
 
-        plateSprite.x = Math.floor(randomNumber * (this.canvas.width-plateSprite.width));
+        plate.x = Math.floor(randomNumber * (this.canvas.width-plate.width));
     
-        plateSprite.y = plate.y-(plateSprite.height/2);
+        plate.y = plate.y-(plate.height/2);
 
     }
 
@@ -72,7 +69,7 @@ class Game {
             let currentSprite = this.sprites[i];
             
             currentSprite.update(newFrame - this.prevFrame);
-    
+            console.log(currentSprite);
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
         }
 

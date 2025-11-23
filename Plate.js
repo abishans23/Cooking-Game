@@ -1,7 +1,9 @@
 class Plate{
     constructor(game, x, y){
         this.game = game;
+        this.state = 0;
         this.image = document.getElementById("plate0");
+        
         this.x = x;
         this.y = y;
         this.width = 0;
@@ -39,6 +41,12 @@ class Plate{
           }
 
         });
+
+    }
+
+    setState(){
+      this.state = (this.state+1)%4;
+        this.image = document.getElementById("plate" + this.state.toString());
 
     }
 
