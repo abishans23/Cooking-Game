@@ -110,7 +110,11 @@ class Game {
         const recipies = data["recipies"];
         const instructions = document.getElementById("instructions");
         const randomRecipe = recipies[0];
-        console.log(randomRecipe.length);
+
+        for (let i = 0; i < this.recipie.length; i++){
+            instructions.removeChild(this.recipie[i]);
+        }
+
         this.recipie = [];
 
         for (let i = randomRecipe.length-1; i > -1; i--){
@@ -187,6 +191,9 @@ function loadGame(){
             if (game.recipie[game.recipie.length - 1 - game.caughtFood].type == closestFood.image.id){
                 game.recipie[game.recipie.length - 1 - game.caughtFood].style.filter = "Brightness(1)"
                 game.caughtFood++;
+                if (game.caughtFood == game.recipie.length){
+                    game.chooseRecipe();
+                }
             }
         }
 
