@@ -54,14 +54,12 @@ class Game {
 
         let newFood = new Food(this, "q", foodName, this.sprites.length);
         this.sprites.push(newFood);
+        this.sprites.push(newFood.keyHolder);
         this.food.push(newFood);
-        let foodSprite =  this.sprites[this.sprites.length-1];
-        foodSprite.height = newFood.height;
-        foodSprite.width = newFood.width;
 
-        foodSprite.x = Math.floor(randomNumber * (this.canvas.width-foodSprite.width));
-    
-        foodSprite.y = newFood.y;
+        newFood.height = newFood.height;
+        newFood.width = newFood.width;
+        newFood.x = Math.floor(randomNumber * (this.canvas.width-newFood.width));
     }
 
     render(){
@@ -89,10 +87,11 @@ class Game {
         //delete food if it hits bottom
         for (let i = 0; i < this.food.length; i++){
             if (this.food[i].y > this.canvas.height){
-                this.sprites.splice(this.food[i].spriteIndex, 1);
+                //splicing two since key sprite has to be deleted too
+                this.sprites.splice(this.food[i].spriteIndex, 2);
                 this.food.splice(i, 1);
                 for (let j = i; j < this.food.length; j++){
-                    this.food[j].spriteIndex -= 1;
+                    this.food[j].spriteIndex -= 2;
                 }
                 i--;
             }
@@ -175,12 +174,13 @@ function loadGame(){
 
         }
         
-        if (closestFood != null && e.key == game.food[foodIndex].key && minDist < 75){
-            game.sprites.splice(game.food[foodIndex].spriteIndex, 1);
+        if (closestFood != null && e.key == game.food[foodIndex].keyHolder.key && minDist < 75){
+            //splicing two since key sprite has to be deleted too
+            game.sprites.splice(game.food[foodIndex].spriteIndex, 2);
             game.food.splice(foodIndex, 1);
 
             for (let i = foodIndex; i < game.food.length; i++){
-                game.food[i].spriteIndex -= 1;
+                game.food[i].spriteIndex -= 2;
             }
 
             if (game.recipie[game.recipie.length - 1 - game.caughtFood].type == closestFood.image.id){
