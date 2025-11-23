@@ -15,8 +15,8 @@ class Game {
         let platex = 100;
         let platey = 550;
         this.plate = new Plate(this, platex, platey);
-        this.plate.width = 100;
-        this.plate.height = 100;
+        this.plate.width = 140;
+        this.plate.height = 140;
         this.sprites.push(this.plate);
         this.prevSpawn = new Date().getTime();
     }
