@@ -8,6 +8,7 @@ class Game {
 
         this.sprites = [];
         this.food = [];
+        this.evilPlate = [];
         this.prevFrame = new Date().getTime();
         this.recipie = this.chooseRecipe();
         this.caughtFood = 0;
