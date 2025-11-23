@@ -21,6 +21,20 @@ class Game {
         this.prevSpawn = new Date().getTime();
     }
 
+    spawnEvilPlate(){
+        let plate = new EvilPlate(this);
+        this.sprites.push(plate);
+        let plateSprite =  this.sprites[this.sprites.length-1];
+        plateSprite.height = this.plate.height;
+        plateSprite.width = this.plate.width;
+        let randomNumber = Math.random();
+
+        plateSprite.x = Math.floor(randomNumber * (this.canvas.width-plateSprite.width));
+    
+        plateSprite.y = plate.y;
+
+    }
+
     async spawnFood(){
         const res = await fetch("./foodData.json");
         const data = await res.json();
@@ -58,8 +72,12 @@ class Game {
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
         }
 
-        if (newFrame - this.prevSpawn > 2000){
-            this.spawnFood()
+        if (newFrame - this.prevSpawn > 1000){
+            let randomNumber = Math.random();
+            if(randomNumber < 0.7)
+                this.spawnFood()
+            else
+                this.spawnEvilPlate();
             this.prevSpawn = new Date().getTime();
         }
 
