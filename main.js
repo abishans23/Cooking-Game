@@ -8,7 +8,7 @@ class Game {
 
         this.sprites = [];
         this.food = [];
-        this.evilPlate = [];
+        this.evilPlates = [];
         this.prevFrame = new Date().getTime();
         this.recipie = this.chooseRecipe();
         this.caughtFood = 0;
@@ -30,7 +30,7 @@ class Game {
 
         let plate = new EvilPlate(this, 180*randomNumber+80);
         this.sprites.push(plate);
-
+        this.evilPlates.push(plate);
 
         plate.x = Math.floor(randomNumber * (this.canvas.width-plate.width));
     
@@ -147,6 +147,8 @@ function loadGame(){
     requestAnimationFrame(animate);
 
     let cooldown = false;
+
+    
 
     addEventListener("keydown", (e)=>{
         if (cooldown) {return;}
