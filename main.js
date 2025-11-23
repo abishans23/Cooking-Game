@@ -116,6 +116,7 @@ class Game {
         }
 
         this.recipie = [];
+        this.caughtFood = 0;
 
         for (let i = randomRecipe.length-1; i > -1; i--){
             let img = document.createElement("img");
@@ -139,13 +140,7 @@ window.addEventListener('load', loadGame);
 function loadGame(){
     const canvas = document.getElementById("gameFrame");
     const game = new Game(canvas);
-    canvas.width = 650;
-    canvas.height = 650;
-    canvas.style.left = "20%";
-    canvas.style.top = "5%";
-
-    game.spawnFood();
-
+    
     function animate(){
         game.render();
         requestAnimationFrame(animate);
