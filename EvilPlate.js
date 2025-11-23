@@ -1,5 +1,5 @@
 class EvilPlate{
-    constructor(game, width){
+    constructor(game, width, spriteIndex){
         this.game = game;
         this.width = width;
         this.height = width*0.6;
@@ -7,6 +7,7 @@ class EvilPlate{
         this.spawnTime = new Date().getTime();
         this.y = 0;
         this.x = 0;
+        this.spriteIndex = spriteIndex;
     }
 
     update(dt){

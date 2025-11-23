@@ -28,7 +28,7 @@ class Game {
             randomNumber/=2;
         }
 
-        let plate = new EvilPlate(this, 180*randomNumber+80);
+        let plate = new EvilPlate(this, 180*randomNumber+80, this.sprites.length);
         this.sprites.push(plate);
         this.evilPlates.push(plate);
 
@@ -43,7 +43,7 @@ class Game {
         const data = await res.json();
         const foodTypes = data["foodTypes"];
         const key = ["q", "w", "e", "r"][Math.floor(Math.random() * 4)];
-        console.log(key);
+
         let randomNumber = Math.random();
         let randomFood = Math.floor(Math.random() * foodTypes.length);
         if(randomFood == 7){
@@ -88,12 +88,25 @@ class Game {
                 //splicing two since key sprite has to be deleted too
                 this.sprites.splice(this.food[i].spriteIndex, 2);
                 this.food.splice(i, 1);
-                for (let j = i; j < this.food.length; j++){
+                for (let j = i; j < this.sprites.length; j++){
                     this.food[j].spriteIndex -= 2;
                 }
                 i--;
             }
         }
+
+        //delete evilPlate if it hits bottom
+         for (let i = 0; i < this.evilPlates.length; i++){
+             if (this.evilPlates[i].y > this.canvas.height){
+                 this.sprites.splice(this.evilPlates[i].spriteIndex, 1);
+                 this.evilPlates.splice(i, 1);
+                 for (let j = i; j < this.sprites.length; j++){
+                     this.evilPlates[j].spriteIndex -= 1;
+                 }
+                 i--;
+             }
+         }
+
 
         this.prevFrame = newFrame;
 
