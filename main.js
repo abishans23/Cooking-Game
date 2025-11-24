@@ -8,7 +8,7 @@ class Game {
 
         this.sprites = [];
         this.food = [];
-        this.evilPlate = [];
+        this.evilPlates = [];
         this.prevFrame = new Date().getTime();
         this.recipie = this.chooseRecipe();
         this.caughtFood = 0;
@@ -28,8 +28,9 @@ class Game {
             randomNumber/=2;
         }
 
-        let plate = new EvilPlate(this, 180*randomNumber+80);
+        let plate = new EvilPlate(this, 180*randomNumber+80, this.sprites.length);
         this.sprites.push(plate);
+        this.evilPlates.push(plate);
 
         plate.x = Math.floor(randomNumber * (this.canvas.width-plate.width));
     
@@ -71,6 +72,33 @@ class Game {
             this.context.drawImage(currentSprite.image, currentSprite.x, currentSprite.y, currentSprite.width, currentSprite.height);
         }
 
+        //delete food if it hits bottom
+        for (let i = 0; i < this.food.length; i++){
+            if (this.food[i].y > this.canvas.height){
+                //splicing two since key sprite has to be deleted too
+                let removedIndex = this.food[i].spriteIndex;
+                this.sprites.splice(removedIndex, 2);
+                this.food.splice(i, 1);
+                for (let j = removedIndex; j < this.sprites.length; j++){
+                    this.sprites[j].spriteIndex -= 2;
+                }
+                i--;
+            }
+        }
+
+        //delete evilPlate if it hits bottom
+        for (let i = 0; i < this.evilPlates.length; i++){
+             if (this.evilPlates[i].y > this.canvas.height){
+                let removedIndex = this.evilPlates[i].spriteIndex;
+                 this.sprites.splice(removedIndex, 1);
+                 this.evilPlates.splice(i, 1);
+                 for (let j = removedIndex; j < this.sprites.length; j++){
+                     this.sprites[j].spriteIndex -= 1;
+                 }
+                 i--;
+             }
+         }
+
         if (newFrame - this.prevSpawn > 1000){
             let randomNumber = Math.random();
             if(randomNumber < 0.7)
@@ -80,18 +108,6 @@ class Game {
             this.prevSpawn = new Date().getTime();
         }
 
-        //delete food if it hits bottom
-        for (let i = 0; i < this.food.length; i++){
-            if (this.food[i].y > this.canvas.height){
-                //splicing two since key sprite has to be deleted too
-                this.sprites.splice(this.food[i].spriteIndex, 2);
-                this.food.splice(i, 1);
-                for (let j = i; j < this.food.length; j++){
-                    this.food[j].spriteIndex -= 2;
-                }
-                i--;
-            }
-        }
 
         this.prevFrame = newFrame;
 
@@ -145,6 +161,8 @@ function loadGame(){
 
     let cooldown = false;
 
+    
+
     addEventListener("keydown", (e)=>{
         if (cooldown) {return;}
 
@@ -191,7 +209,7 @@ function loadGame(){
         //can't let player spam keys
         setTimeout(e =>{
             cooldown = false;
-        }, 100)
+        }, 300)
     })
 
 }

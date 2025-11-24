@@ -12,6 +12,7 @@ class Plate{
         this.vel = 0;
         this.changedDir = 0;
         this.direction = 0;
+        this.spriteIndex = 0;
 
         document.addEventListener("keydown", (e) => {
 
