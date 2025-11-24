@@ -14,7 +14,7 @@ class Game {
         this.caughtFood = 0;
 
         let platex = 100;
-        let platey = 550;
+        let platey = 500;
         this.plate = new Plate(this, platex, platey);
         this.plate.width = 140;
         this.plate.height = 140;
