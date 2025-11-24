@@ -32,6 +32,7 @@ class Key {
         this.height = 25;
         this.x = 0;
         this.y = 0;
+        this.spriteIndex = 0;
     }
 
     update(dt){

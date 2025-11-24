@@ -88,7 +88,7 @@ class Game {
 
         //delete evilPlate if it hits bottom
         for (let i = 0; i < this.evilPlates.length; i++){
-             if (this.evilPlates[i].y > this.canvas.height){
+            if (this.evilPlates[i].y > this.canvas.height){
                 let removedIndex = this.evilPlates[i].spriteIndex;
                  this.sprites.splice(removedIndex, 1);
                  this.evilPlates.splice(i, 1);
@@ -163,7 +163,7 @@ function loadGame(){
 
     
 
-    addEventListener("keydown", (e)=>{
+    addEventListener("keydown", (e) => {
         if (cooldown) {return;}
 
         cooldown = true;
@@ -191,11 +191,12 @@ function loadGame(){
         if (closestFood != null && e.key == game.food[foodIndex].keyHolder.key && minDist < 75){
             //splicing two since key sprite has to be deleted too
             game.sprites.splice(game.food[foodIndex].spriteIndex, 2);
-            game.food.splice(foodIndex, 1);
 
-            for (let i = foodIndex; i < game.food.length; i++){
-                game.food[i].spriteIndex -= 2;
+            for (let i = game.food[foodIndex].spriteIndex; i < game.sprites.length; i++){
+                game.sprites[i].spriteIndex -= 2;
             }
+
+            game.food.splice(foodIndex, 1);
 
             if (game.recipie[game.recipie.length - 1 - game.caughtFood].type == closestFood.image.id){
                 game.recipie[game.recipie.length - 1 - game.caughtFood].style.filter = "Brightness(1)"
