@@ -202,7 +202,9 @@ function loadGame(){
                 game.recipie[game.recipie.length - 1 - game.caughtFood].style.filter = "Brightness(1)"
                 game.caughtFood++;
                 if (game.caughtFood == game.recipie.length){
-                    game.chooseRecipe();
+                    setTimeout(e => {
+                        game.chooseRecipe();
+                    }, 200)
                 }
             }
         }
