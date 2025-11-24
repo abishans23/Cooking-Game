@@ -146,6 +146,10 @@ class Game {
         }
     }
 
+    startScreen(){
+        
+    }
+
 
 
 }
