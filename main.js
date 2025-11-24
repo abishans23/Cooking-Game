@@ -160,7 +160,7 @@ function loadGame(){
     requestAnimationFrame(animate);
 
     let cooldown = false;
-
+    let plateCooldown = false;
     
 
     addEventListener("keydown", (e) => {
