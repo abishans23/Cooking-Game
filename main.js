@@ -20,6 +20,7 @@ class Game {
         this.plate.height = 140;
         this.sprites.push(this.plate);
         this.prevSpawn = new Date().getTime();
+        this.ordersCompleted = 0;
     }
 
     spawnEvilPlate(){
@@ -62,6 +63,9 @@ class Game {
 
     render(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.textAlign = "right";
+        this.context.font = "25px Arial"
+        this.context.fillText("Orders Completed: " + this.ordersCompleted, this.width-10, 35);
         let newFrame = new Date().getTime();
 
         for (let i = 0; i < this.sprites.length; i++){
@@ -202,6 +206,7 @@ function loadGame(){
                 game.recipie[game.recipie.length - 1 - game.caughtFood].style.filter = "Brightness(1)"
                 game.caughtFood++;
                 if (game.caughtFood == game.recipie.length){
+                    game.ordersCompleted++;
                     setTimeout(e => {
                         game.chooseRecipe();
                     }, 200)
