@@ -150,8 +150,6 @@ class Game {
         
     }
 
-
-
 }
 
 window.addEventListener('load', loadGame);
