@@ -210,10 +210,7 @@ function loadGame(){
         //can't let player spam keys
         setTimeout(e =>{
             cooldown = false;
-        }, 300)
+        }, 200)
     })
 
 }
-
-
-//function to move the mouse
