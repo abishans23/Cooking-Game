@@ -11,7 +11,7 @@ class Game {
         this.food = [];
         this.evilPlates = [];
         this.prevFrame = new Date().getTime();
-        this.recipie = this.chooseRecipe();
+        this.recipie = []
         this.caughtFood = 0;
 
         let platex = 100;
@@ -23,6 +23,7 @@ class Game {
         this.prevSpawn = new Date().getTime();
         this.ordersCompleted = 0;
         this.livesRemaining = 4;
+        this.chooseRecipe();
     }
 
     spawnEvilPlate(){
@@ -220,12 +221,11 @@ class Game {
         let retryGame = () => {
             this.state = "in game";
             this.canvas.removeEventListener("click", retryButton.onClick);
-            console.log("eeee")
+
             this.sprites = [];
-            this.food = [];
             this.evilPlates = [];
+            this.food = [];
             this.prevFrame = new Date().getTime();
-            this.recipie = this.chooseRecipe();
             this.caughtFood = 0;
 
             let platex = 100;
@@ -238,10 +238,13 @@ class Game {
             this.ordersCompleted = 0;
             this.livesRemaining = 4;
 
+            this.chooseRecipe();
+
             this.playGame();
         }
 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
         let retryButton = new Button(this, "retryButton", this.width/2 - 125, this.height/2 - 63, 250, 125, retryGame);
         this.context.drawImage(retryButton.image, retryButton.x, retryButton.y, retryButton.width, retryButton.height);
 
@@ -251,6 +254,7 @@ class Game {
 
         let animate = () => {
             if (this.state == "retry"){
+                document.removeEventListener("keydown", key);
                 this.retryScreen();
                 return;
             }
@@ -265,7 +269,7 @@ class Game {
 
         let cooldown = false;
 
-        addEventListener("keydown", (e) => {
+        let key = addEventListener("keydown", (e) => {
             if (cooldown) {return;}
 
             cooldown = true;
