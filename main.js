@@ -22,6 +22,7 @@ class Game {
         this.sprites.push(this.plate);
         this.prevSpawn = new Date().getTime();
         this.ordersCompleted = 0;
+        this.livesRemaining = 4;
     }
 
     spawnEvilPlate(){
@@ -80,6 +81,8 @@ class Game {
         this.context.fillText("Orders Completed: " + this.ordersCompleted, this.width-10, 35);
         let newFrame = new Date().getTime();
 
+        this.context.fillText("Lives remaining:  " + this.livesRemaining, this.width-420, 35);
+
         for (let i = 0; i < this.sprites.length; i++){
             //render sprite
             let currentSprite = this.sprites[i];
@@ -110,6 +113,7 @@ class Game {
                 if(this.collides(this.plate, evil)){
                     
                     this.plate.setState();
+                    this.livesRemaining--;
                     
                     if(this.plate.state == "plate0"){
                         //    this.endGame();
