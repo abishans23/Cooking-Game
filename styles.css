@@ -9,13 +9,13 @@
 #gameFrame {
     background-color: #87cefa;
     position: relative; 
-    background-image: url("/images/tabletop.png");
+    background-image: url("./images/tabletop.png");
     background-size: 100% 100%;
     top: 5%;
 }
 
 #instructions{
-    background-image: url("images/sky.png");
+    background-image: url("./images/sky.png");
     margin-left: 10%;
     width: 300px;
     height: 1fr;
