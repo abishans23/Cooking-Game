@@ -28,8 +28,8 @@ class Key {
     constructor(key){
         this.image = document.getElementById(key);
         this.key = key;
-        this.width = 25;
-        this.height = 25;
+        this.width = 30;
+        this.height = 30;
         this.x = 0;
         this.y = 0;
         this.spriteIndex = 0;
