@@ -198,6 +198,7 @@ class Game {
 
     startScreen(){
         let startGame = () => {
+            this.state = "in game";
             this.canvas.removeEventListener("click", playButton.onClick);
             this.playGame();
         }
