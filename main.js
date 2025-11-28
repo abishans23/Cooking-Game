@@ -247,7 +247,9 @@ class Game {
 
         let retryButton = new Button(this, "retryButton", this.width/2 - 125, this.height/2 - 63, 250, 125, retryGame);
         this.context.drawImage(retryButton.image, retryButton.x, retryButton.y, retryButton.width, retryButton.height);
-
+        this.context.textAlign = "center";
+        this.context.font = "15px Arial";
+        this.context.fillText(msg, 300, 400);
     }
 
     playGame(){
@@ -255,7 +257,7 @@ class Game {
         let animate = () => {
             if (this.state == "retry"){
                 document.removeEventListener("keydown", key);
-                this.retryScreen();
+                this.retryScreen("Don't catch the wrong food!");
                 return;
             }
             this.render();
