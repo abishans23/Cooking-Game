@@ -213,9 +213,17 @@ class Game {
         this.context.fillText("Avoid evil plates!", 300, 440);
     }
 
+    retryScreen(msg){
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
     playGame(){
 
         const animate = () => {
+            if (this.state == "retry"){
+                this.retryScreen();
+                return;
+            }
             this.render();
             requestAnimationFrame(animate);
         }
@@ -263,7 +271,7 @@ class Game {
                 this.food.splice(foodIndex, 1);
 
                 if (this.recipie[this.recipie.length - 1 - this.caughtFood].type == closestFood.image.id){
-                    this.recipie[this.recipie.length - 1 - this.caughtFood].style.filter = "Brightness(1)"
+                    this.recipie[this.recipie.length - 1 - this.caughtFood].style.filter = "Brightness(1)";
                     this.caughtFood++;
                     if (this.caughtFood == this.recipie.length){
                         this.ordersCompleted++;
@@ -271,6 +279,8 @@ class Game {
                             this.chooseRecipe();
                         }, 200)
                     }
+                } else {
+                    this.state = "retry";
                 }
             }
 
