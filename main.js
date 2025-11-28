@@ -160,6 +160,7 @@ class Game {
         const instructions = document.getElementById("instructions");
         const randomRecipe = recipes[0];
 
+
         for (let i = 0; i < this.recipie.length; i++){
             instructions.removeChild(this.recipie[i]);
         }
@@ -168,12 +169,13 @@ class Game {
         this.caughtFood = 0;
 
         for (let i = randomRecipe.length-1; i > -1; i--){
+            let randomIndex = Math.floor((Math.random() * (foodTypes.length-1- 1) + 1))
             let img = document.createElement("img");
-            img.src = "./images/" + foodTypes[i] + ".png";
+            img.src = "./images/" + foodTypes[randomIndex] + ".png";
             img.width = "100";
             img.id = "TopBun";
             img.style.filter = "Brightness(0)"
-            img.type = foodTypes[i];
+            img.type = foodTypes[randomIndex];
 
             instructions.appendChild(img);
             this.recipie.push(img);
