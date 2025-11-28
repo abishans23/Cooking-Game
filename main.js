@@ -119,8 +119,6 @@ class Game {
                         //    this.endGame();
                     }
                     
-                    
-
                 }
                 let removedIndex = evil.spriteIndex;
                 this.sprites.splice(removedIndex, 1);
