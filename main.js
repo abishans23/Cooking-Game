@@ -116,8 +116,8 @@ class Game {
                     this.plate.setState();
                     this.livesRemaining--;
                     
-                    if(this.livesRemaining <= 0){
-                        this.retryScreen();
+                    if (this.livesRemaining <= 0){
+                        this.state = "retry";
                     }
                     
                 }
