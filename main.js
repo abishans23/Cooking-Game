@@ -202,7 +202,7 @@ class Game {
             this.playGame();
         }
 
-        let playButton = new Button(this, "playButton", this.width/2 - 150, this.height/2 - 75, 300, 150, startGame);
+        let playButton = new Button(this, "playButton", this.width/2 - 125, this.height/2 - 63, 250, 125, startGame);
         this.context.drawImage(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
         this.context.drawImage(document.getElementById("logo"), this.width / 2 - 1280/8, this.height / 2 - 200, 1280/4, 520/4);
         this.context.textAlign = "center";
