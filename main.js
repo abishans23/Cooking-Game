@@ -108,14 +108,14 @@ class Game {
 
             if (this.collides(this.plate, evil) || this.evilPlates[i].y > this.canvas.height) {
                 if(this.collides(this.plate, evil)){
-                    let done = false;
-                    if(this.plate.state == "plate3") done = true;
-                        this.plate.setState();
-
-                    if(done == true){
-                       //vivek do this
-                    //    this.endGame();
+                    
+                    this.plate.setState();
+                    
+                    if(this.plate.state == "plate0"){
+                        //    this.endGame();
                     }
+                    
+                    
 
                 }
                 let removedIndex = evil.spriteIndex;
