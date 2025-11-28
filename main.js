@@ -5,6 +5,7 @@ class Game {
 
         this.width = this.canvas.width;
         this.height = this.canvas.height;
+        this.state = "start";
 
         this.sprites = [];
         this.food = [];
@@ -101,9 +102,6 @@ class Game {
             }
         }
 
-        // let collision = false;
-        // if(this.evilPlates[0].y<this.plate.x)
-       
 
         for (let i = 0; i < this.evilPlates.length; i++) {
             let evil = this.evilPlates[i];
@@ -206,12 +204,12 @@ class Game {
 
         let playButton = new Button(this, "playButton", this.width/2 - 150, this.height/2 - 75, 300, 150, startGame);
         this.context.drawImage(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
+        this.context.drawImage(document.getElementById("logo"), this.width / 2 - 1280/8, this.height / 2 - 200, 1280/4, 520/4);
         this.context.textAlign = "center";
         this.context.font = "15px Arial";
         this.context.fillText("Catch the food as shown in the recipe to complete a order", 300, 400);
         this.context.fillText("To catch food click the button shown on the food when it gets close", 300, 420);
         this.context.fillText("Avoid evil plates!", 300, 440);
-
     }
 
     playGame(){
