@@ -168,8 +168,19 @@ class Game {
         this.recipie = [];
         this.caughtFood = 0;
 
-        for (let i = randomRecipe.length-1; i > -1; i--){
-            let randomIndex = Math.floor((Math.random() * (foodTypes.length-1- 1) + 1))
+        let imgL = document.createElement("img");
+            imgL.src = "./images/" + foodTypes[foodTypes.length-1] + ".png";
+            imgL.width = "100";
+            imgL.id = "TopBun";
+            imgL.style.filter = "Brightness(0)"
+            imgL.type = foodTypes[foodTypes.length-1];
+
+            instructions.appendChild(imgL);
+            this.recipie.push(imgL);
+
+        let r = Math.floor(Math.random() * 3)
+        for (let i = randomRecipe.length-5+r; i > -1; i--){
+            let randomIndex = Math.floor(Math.floor(Math.random() * 4) + 1)
             let img = document.createElement("img");
             img.src = "./images/" + foodTypes[randomIndex] + ".png";
             img.width = "100";
@@ -180,6 +191,16 @@ class Game {
             instructions.appendChild(img);
             this.recipie.push(img);
         }
+
+         let img0 = document.createElement("img");
+            img0.src = "./images/" + foodTypes[0] + ".png";
+            img0.width = "100";
+            img0.id = "TopBun";
+            img0.style.filter = "Brightness(0)"
+            img0.type = foodTypes[0];
+
+            instructions.appendChild(img0);
+            this.recipie.push(img0);
     }
 
     startScreen(){
