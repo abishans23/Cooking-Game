@@ -173,7 +173,7 @@ class Game {
             this.recipie.push(imgL);
 
         let r = Math.floor(Math.random() * 3)
-        for (let i = randomRecipe.length-5; i > -1; i--){
+        for (let i = randomRecipe.length-5+r; i > -1; i--){
             let randomIndex = Math.floor(Math.floor(Math.random() * 4) + 1)
             let img = document.createElement("img");
             img.src = "./images/" + foodTypes[randomIndex] + ".png";
