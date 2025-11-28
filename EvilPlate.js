@@ -13,7 +13,7 @@ class EvilPlate{
     update(dt){
 
         let t = (new Date().getTime() - this.spawnTime);
-        this.y += (dt/1000) * 100 + t * (dt/1000) * (35/100);
+        this.y += (dt/1000) * 100 + t * (dt/1000) * ((30+10*this.game.ordersCompleted)/100);
 
     }
 }
