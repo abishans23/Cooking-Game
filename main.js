@@ -23,6 +23,7 @@ class Game {
         this.prevSpawn = new Date().getTime();
         this.ordersCompleted = 0;
         this.livesRemaining = 4;
+        this.highScore = 0;
         this.chooseRecipe();
     }
 
@@ -218,6 +219,10 @@ class Game {
 
     retryScreen(msg){
 
+        if (this.ordersCompleted > this.highScore){
+            this.highScore = this.ordersCompleted;
+        }
+
         let retryGame = () => {
             this.state = "in game";
             this.canvas.removeEventListener("click", retryButton.onClick);
@@ -250,6 +255,7 @@ class Game {
         this.context.textAlign = "center";
         this.context.font = "15px Arial";
         this.context.fillText(msg, 300, 400);
+        this.context.fillText("High Score: " + this.highScore, 300, 420);
     }
 
     playGame(){
