@@ -145,6 +145,11 @@ class Game {
         //this.context.fillRect(100, 550, 50, 50);
     }
 
+    //vivek do this
+    endGame(){
+
+    }
+
     
     
     async chooseRecipe(){
