@@ -147,7 +147,77 @@ class Game {
     }
 
     startScreen(){
+        let playButton = new Button(this, "playButton", this.width/2 - 150, this.height/2 - 75, 300, 150, this.playGame);
+        this.context.drawImage(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
+    }
+
+    playGame(){
+
+        const animate = () => {
+            this.render();
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(e =>{
+            this.render();
+            requestAnimationFrame(animate);
+        });
         
+
+        let cooldown = false;
+
+        addEventListener("keydown", (e) => {
+            if (cooldown) {return;}
+
+            cooldown = true;
+            let closestFood = null;
+            let minDist = Infinity;
+            let foodIndex = Infinity;
+
+            for (let i = 0; i < this.food.length; i++){
+                let centerPX = this.plate.x + this.plate.width/2;
+                let centerPY = this.plate.y + this.plate.height/2;
+
+                let centerFX = this.food[i].x + this.food[i].width/2;
+                let centerFY = this.food[i].y + this.food[i].height/2;
+
+                let dist = Math.sqrt((centerPX - centerFX) * (centerPX - centerFX) + (centerPY - centerFY) * (centerPY - centerFY))
+
+                if (dist < minDist){
+                    minDist = dist;
+                    closestFood = this.food[i];
+                    foodIndex = i;
+                }
+
+            }
+            
+            if (closestFood != null && e.key == this.food[foodIndex].keyHolder.key && minDist < 75){
+                //splicing two since key sprite has to be deleted too
+                this.sprites.splice(this.food[foodIndex].spriteIndex, 2);
+
+                for (let i = this.food[foodIndex].spriteIndex; i < this.sprites.length; i++){
+                    this.sprites[i].spriteIndex -= 2;
+                }
+
+                this.food.splice(foodIndex, 1);
+
+                if (this.recipie[this.recipie.length - 1 - this.caughtFood].type == closestFood.image.id){
+                    this.recipie[this.recipie.length - 1 - this.caughtFood].style.filter = "Brightness(1)"
+                    this.caughtFood++;
+                    if (this.caughtFood == this.recipie.length){
+                        this.ordersCompleted++;
+                        setTimeout(e => {
+                            this.chooseRecipe();
+                        }, 200)
+                    }
+                }
+            }
+
+            //can't let player spam keys
+            setTimeout(e =>{
+                cooldown = false;
+            }, 200)
+        })
     }
 
 }
@@ -158,68 +228,8 @@ function loadGame(){
     const canvas = document.getElementById("gameFrame");
     const game = new Game(canvas);
 
-    function animate(){
-        game.render();
-        requestAnimationFrame(animate);
-    }
 
-    requestAnimationFrame(animate);
 
-    let cooldown = false;
-
-    
-
-    addEventListener("keydown", (e) => {
-        if (cooldown) {return;}
-
-        cooldown = true;
-        let closestFood = null;
-        let minDist = Infinity;
-        let foodIndex = Infinity;
-
-        for (let i = 0; i < game.food.length; i++){
-            let centerPX = game.plate.x + game.plate.width/2;
-            let centerPY = game.plate.y + game.plate.height/2;
-
-            let centerFX = game.food[i].x + game.food[i].width/2;
-            let centerFY = game.food[i].y + game.food[i].height/2;
-
-            let dist = Math.sqrt((centerPX - centerFX) * (centerPX - centerFX) + (centerPY - centerFY) * (centerPY - centerFY))
-
-            if (dist < minDist){
-                minDist = dist;
-                closestFood = game.food[i];
-                foodIndex = i;
-            }
-
-        }
-        
-        if (closestFood != null && e.key == game.food[foodIndex].keyHolder.key && minDist < 75){
-            //splicing two since key sprite has to be deleted too
-            game.sprites.splice(game.food[foodIndex].spriteIndex, 2);
-
-            for (let i = game.food[foodIndex].spriteIndex; i < game.sprites.length; i++){
-                game.sprites[i].spriteIndex -= 2;
-            }
-
-            game.food.splice(foodIndex, 1);
-
-            if (game.recipie[game.recipie.length - 1 - game.caughtFood].type == closestFood.image.id){
-                game.recipie[game.recipie.length - 1 - game.caughtFood].style.filter = "Brightness(1)"
-                game.caughtFood++;
-                if (game.caughtFood == game.recipie.length){
-                    game.ordersCompleted++;
-                    setTimeout(e => {
-                        game.chooseRecipe();
-                    }, 200)
-                }
-            }
-        }
-
-        //can't let player spam keys
-        setTimeout(e =>{
-            cooldown = false;
-        }, 200)
-    })
+    game.startScreen();
 
 }
