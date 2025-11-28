@@ -199,8 +199,19 @@ class Game {
 
 
     startScreen(){
-        let playButton = new Button(this, "playButton", this.width/2 - 150, this.height/2 - 75, 300, 150, this.playGame);
+        let startGame = () => {
+            this.canvas.removeEventListener("click", playButton.onClick);
+            this.playGame();
+        }
+
+        let playButton = new Button(this, "playButton", this.width/2 - 150, this.height/2 - 75, 300, 150, startGame);
         this.context.drawImage(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
+        this.context.textAlign = "center";
+        this.context.font = "15px Arial";
+        this.context.fillText("Catch the food as shown in the recipe to complete a order", 300, 400);
+        this.context.fillText("To catch food click the button shown on the food when it gets close", 300, 420);
+        this.context.fillText("Avoid evil plates!", 300, 440);
+
     }
 
     playGame(){
