@@ -61,6 +61,15 @@ class Game {
         newFood.x = Math.floor(randomNumber * (this.canvas.width-newFood.width));
     }
 
+    collides(a, b) {
+    return (
+        a.x < b.x + b.width/2 &&
+        a.x + a.width/(1.5) > b.x &&
+        a.y < b.y + b.height/2 &&
+        a.y + a.height/(1.5) > b.y
+    );
+}
+
     render(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.textAlign = "right";
@@ -90,18 +99,36 @@ class Game {
             }
         }
 
-        //delete evilPlate if it hits bottom
-        for (let i = 0; i < this.evilPlates.length; i++){
-            if (this.evilPlates[i].y > this.canvas.height){
-                let removedIndex = this.evilPlates[i].spriteIndex;
-                 this.sprites.splice(removedIndex, 1);
-                 this.evilPlates.splice(i, 1);
-                 for (let j = removedIndex; j < this.sprites.length; j++){
-                     this.sprites[j].spriteIndex -= 1;
-                 }
-                 i--;
-             }
-         }
+        // let collision = false;
+        // if(this.evilPlates[0].y<this.plate.x)
+       
+
+        for (let i = 0; i < this.evilPlates.length; i++) {
+            let evil = this.evilPlates[i];
+
+            if (this.collides(this.plate, evil) || this.evilPlates[i].y > this.canvas.height) {
+                if(this.collides(this.plate, evil)){
+                    let done = false;
+                    if(this.plate.state == "plate3") done = true;
+                        this.plate.setState();
+
+                    if(done == true){
+                       //vivek do this
+                       this.endGame();
+                    }
+
+                }
+                let removedIndex = evil.spriteIndex;
+                this.sprites.splice(removedIndex, 1);
+                this.evilPlates.splice(i, 1);
+
+                for (let j = removedIndex; j < this.sprites.length; j++) {
+                    this.sprites[j].spriteIndex -= 1;
+                }
+
+                i--;
+            }
+        }
 
         if (newFrame - this.prevSpawn > 1000){
             let randomNumber = Math.random();
@@ -117,6 +144,8 @@ class Game {
 
         //this.context.fillRect(100, 550, 50, 50);
     }
+
+    
     
     async chooseRecipe(){
         const res = await fetch("./foodData.json");
