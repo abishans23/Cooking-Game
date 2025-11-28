@@ -34,6 +34,7 @@ class Game {
             randomNumber/=2;
         }
 
+
         let plate = new EvilPlate(this, 180*randomNumber+80, this.sprites.length);
         this.sprites.push(plate);
         this.evilPlates.push(plate);
