@@ -216,12 +216,40 @@ class Game {
     }
 
     retryScreen(msg){
+
+        let retryGame = () => {
+            this.state = "in game";
+            this.canvas.removeEventListener("click", retryButton.onClick);
+            console.log("eeee")
+            this.sprites = [];
+            this.food = [];
+            this.evilPlates = [];
+            this.prevFrame = new Date().getTime();
+            this.recipie = this.chooseRecipe();
+            this.caughtFood = 0;
+
+            let platex = 100;
+            let platey = 500;
+            this.plate = new Plate(this, platex, platey);
+            this.plate.width = 140;
+            this.plate.height = 140;
+            this.sprites.push(this.plate);
+            this.prevSpawn = new Date().getTime();
+            this.ordersCompleted = 0;
+            this.livesRemaining = 4;
+
+            this.playGame();
+        }
+
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        let retryButton = new Button(this, "retryButton", this.width/2 - 125, this.height/2 - 63, 250, 125, retryGame);
+        this.context.drawImage(retryButton.image, retryButton.x, retryButton.y, retryButton.width, retryButton.height);
+
     }
 
     playGame(){
 
-        const animate = () => {
+        let animate = () => {
             if (this.state == "retry"){
                 this.retryScreen();
                 return;
