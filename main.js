@@ -59,6 +59,17 @@ class Game {
         newFood.height = newFood.height;
         newFood.width = newFood.width;
         newFood.x = Math.floor(randomNumber * (this.canvas.width-newFood.width));
+
+        
+    }
+
+    collides(a, b) {
+        return (
+            a.x < b.x + b.width/2 &&
+            a.x + a.width/(1.5) > b.x &&
+            a.y < b.y + b.height/2 &&
+            a.y + a.height/(1.5) > b.y
+        );
     }
 
     render(){
@@ -90,18 +101,36 @@ class Game {
             }
         }
 
-        //delete evilPlate if it hits bottom
-        for (let i = 0; i < this.evilPlates.length; i++){
-            if (this.evilPlates[i].y > this.canvas.height){
-                let removedIndex = this.evilPlates[i].spriteIndex;
-                 this.sprites.splice(removedIndex, 1);
-                 this.evilPlates.splice(i, 1);
-                 for (let j = removedIndex; j < this.sprites.length; j++){
-                     this.sprites[j].spriteIndex -= 1;
-                 }
-                 i--;
-             }
-         }
+        // let collision = false;
+        // if(this.evilPlates[0].y<this.plate.x)
+       
+
+        for (let i = 0; i < this.evilPlates.length; i++) {
+            let evil = this.evilPlates[i];
+
+            if (this.collides(this.plate, evil) || this.evilPlates[i].y > this.canvas.height) {
+                if(this.collides(this.plate, evil)){
+                    let done = false;
+                    if(this.plate.state == "plate3") done = true;
+                        this.plate.setState();
+
+                    if(done == true){
+                       //vivek do this
+                    //    this.endGame();
+                    }
+
+                }
+                let removedIndex = evil.spriteIndex;
+                this.sprites.splice(removedIndex, 1);
+                this.evilPlates.splice(i, 1);
+
+                for (let j = removedIndex; j < this.sprites.length; j++) {
+                    this.sprites[j].spriteIndex -= 1;
+                }
+
+                i--;
+            }
+        }
 
         if (newFrame - this.prevSpawn > 1000){
             let randomNumber = Math.random();
@@ -133,18 +162,41 @@ class Game {
         this.recipie = [];
         this.caughtFood = 0;
 
-        for (let i = randomRecipe.length-1; i > -1; i--){
+        let imgL = document.createElement("img");
+            imgL.src = "./images/" + foodTypes[foodTypes.length-1] + ".png";
+            imgL.width = "100";
+            imgL.id = "TopBun";
+            imgL.style.filter = "Brightness(0)"
+            imgL.type = foodTypes[foodTypes.length-1];
+
+            instructions.appendChild(imgL);
+            this.recipie.push(imgL);
+
+        let r = Math.floor(Math.random() * 3)
+        for (let i = randomRecipe.length-5+r; i > -1; i--){
+            let randomIndex = Math.floor(Math.floor(Math.random() * 4) + 1)
             let img = document.createElement("img");
-            img.src = "./images/" + foodTypes[i] + ".png";
+            img.src = "./images/" + foodTypes[randomIndex] + ".png";
             img.width = "100";
             img.id = "TopBun";
             img.style.filter = "Brightness(0)"
-            img.type = foodTypes[i];
+            img.type = foodTypes[randomIndex];
 
             instructions.appendChild(img);
             this.recipie.push(img);
         }
+
+         let img0 = document.createElement("img");
+            img0.src = "./images/" + foodTypes[0] + ".png";
+            img0.width = "100";
+            img0.id = "TopBun";
+            img0.style.filter = "Brightness(0)"
+            img0.type = foodTypes[0];
+
+            instructions.appendChild(img0);
+            this.recipie.push(img0);
     }
+
 
     startScreen(){
         let playButton = new Button(this, "playButton", this.width/2 - 150, this.height/2 - 75, 300, 150, this.playGame);
@@ -162,7 +214,6 @@ class Game {
             this.render();
             requestAnimationFrame(animate);
         });
-        
 
         let cooldown = false;
 
@@ -227,8 +278,6 @@ window.addEventListener('load', loadGame);
 function loadGame(){
     const canvas = document.getElementById("gameFrame");
     const game = new Game(canvas);
-
-
 
     game.startScreen();
 
