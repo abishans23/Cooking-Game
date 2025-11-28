@@ -6,6 +6,7 @@ class Game {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.state = "start";
+        this.loseMessage = "";
 
         this.sprites = [];
         this.food = [];
@@ -50,6 +51,7 @@ class Game {
 
         let randomNumber = Math.random();
         let randomFood = Math.floor(Math.random() * foodTypes.length);
+
         if(randomFood == 7){
             randomFood = 6;
         }
@@ -119,6 +121,7 @@ class Game {
                     
                     if (this.livesRemaining <= 0){
                         this.state = "retry";
+                        this.loseMessage = "Avoid the evil plates!";
                     }
                     
                 }
@@ -209,7 +212,7 @@ class Game {
 
         let playButton = new Button(this, "playButton", this.width/2 - 125, this.height/2 - 63, 250, 125, startGame);
         this.context.drawImage(playButton.image, playButton.x, playButton.y, playButton.width, playButton.height);
-        this.context.drawImage(document.getElementById("logo"), this.width / 2 - 1280/8, this.height / 2 - 200, 1280/4, 520/4);
+        this.context.drawImage(document.getElementById("logo"), this.width / 2 - 1280/6, this.height / 2 - 250, 1280/3, 520/3);
         this.context.textAlign = "center";
         this.context.font = "15px Arial";
         this.context.fillText("Catch the food as shown in the recipe to complete a order", 300, 400);
@@ -217,7 +220,7 @@ class Game {
         this.context.fillText("Avoid evil plates!", 300, 440);
     }
 
-    retryScreen(msg){
+    retryScreen(){
 
         if (this.ordersCompleted > this.highScore){
             this.highScore = this.ordersCompleted;
@@ -253,9 +256,9 @@ class Game {
         let retryButton = new Button(this, "retryButton", this.width/2 - 125, this.height/2 - 63, 250, 125, retryGame);
         this.context.drawImage(retryButton.image, retryButton.x, retryButton.y, retryButton.width, retryButton.height);
         this.context.textAlign = "center";
-        this.context.font = "15px Arial";
-        this.context.fillText(msg, 300, 400);
-        this.context.fillText("High Score: " + this.highScore, 300, 420);
+        this.context.font = "20px Arial";
+        this.context.fillText(this.loseMessage, 300, 400);
+        this.context.fillText("High Score: " + this.highScore, 300, 430);
     }
 
     playGame(){
@@ -263,7 +266,7 @@ class Game {
         let animate = () => {
             if (this.state == "retry"){
                 document.removeEventListener("keydown", key);
-                this.retryScreen("Don't catch the wrong food!");
+                this.retryScreen();
                 return;
             }
             this.render();
@@ -323,6 +326,7 @@ class Game {
                     }
                 } else {
                     this.state = "retry";
+                    this.loseMessage = "Don't catch the wrong food!";
                 }
             }
 
