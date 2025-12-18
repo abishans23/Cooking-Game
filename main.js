@@ -31,15 +31,17 @@ class Game {
     spawnEvilPlate(){
         let randomNumber = Math.random();
         if(randomNumber > 0.8){
-            randomNumber/=2;
+            randomNumber/=4;
         }
+
+        let randomNumber2 = Math.random();
 
 
         let plate = new EvilPlate(this, 180*randomNumber+80, this.sprites.length);
         this.sprites.push(plate);
         this.evilPlates.push(plate);
 
-        plate.x = Math.floor(randomNumber * (this.canvas.width-plate.width));
+        plate.x = Math.floor(randomNumber2 * (this.canvas.width-plate.width));
     
         plate.y = plate.y-(plate.height/2);
     }
@@ -85,7 +87,7 @@ class Game {
         this.context.font = "25px Arial"
         this.context.fillText("Orders Completed: " + this.ordersCompleted, this.width-10, 35);
         let newFrame = new Date().getTime();
-
+        if(this.ordersCompleted>0)
         this.context.fillText("Lives remaining:  " + this.livesRemaining, this.width-420, 35);
 
         for (let i = 0; i < this.sprites.length; i++){
@@ -139,11 +141,18 @@ class Game {
         }
 
         if (newFrame - this.prevSpawn > 1000){
-            let randomNumber = Math.random();
-            if(randomNumber < 0.7)
+            if(this.ordersCompleted == 0){
                 this.spawnFood()
-            else
-                this.spawnEvilPlate();
+
+            }
+
+            else{
+                let randomNumber = Math.random();
+                if(randomNumber < 0.73)
+                    this.spawnFood()
+                else
+                    this.spawnEvilPlate();
+            }
             this.prevSpawn = new Date().getTime();
         }
 
